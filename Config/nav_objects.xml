@@ -1,0 +1,71 @@
+<configs patcher-version="4">
+	<append xpath="/nav_object_classes">
+		<nav_object_class name="supply_plane">
+			<!-- this is a hack to allow plane to show up on the radar -->
+			<property name="requirement_type" value="IsTwitchSpawnedSelf"/>
+
+			<map_settings>
+				<property name="sprite_name" value="air_drop_plane"/>
+				<property name="min_distance" value="0"/>
+				<property name="max_distance" value="-1"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+			</map_settings>
+
+			<compass_settings>
+				<property name="sprite_name" value="air_drop_plane"/>
+				<property name="min_distance" value="0"/>
+				<property name="max_distance" value="4096"/>
+				<property name="max_scale_distance" value="1024"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+				<property name="icon_clamped" value="false"/>
+			</compass_settings>
+
+			<onscreen_settings>
+				<property name="sprite_name" value="air_drop_plane"/>
+				<property name="min_distance" value="15"/>
+				<property name="max_distance" value="1024"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+				<property name="text_type" value="Distance"/>
+				<property name="show_offscreen" value="true"/>
+			</onscreen_settings>
+		</nav_object_class>
+
+		<nav_object_class name="supply_crate">
+			<!-- <property name="requirement_type" value="IsTwitchSpawnedSelf" /> -->
+
+			<map_settings>
+				<property name="sprite_name" value="ui_game_symbol_fetch_loot"/>
+				<property name="min_distance" value="0"/>
+				<property name="max_distance" value="-1"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+			</map_settings>
+
+			<compass_settings>
+				<property name="sprite_name" value="ui_game_symbol_fetch_loot"/>
+				<property name="up_sprite_name" value="ui_game_symbol_fetch_loot_up"/>
+				<property name="down_sprite_name" value="ui_game_symbol_fetch_loot_down"/>
+				<property name="min_distance" value="0"/>
+				<property name="max_distance" value="4096"/>
+				<property name="max_scale_distance" value="1024"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+				<property name="icon_clamped" value="false"/>
+			</compass_settings>
+
+			<onscreen_settings>
+				<property name="sprite_name" value="ui_game_symbol_fetch_loot"/>
+				<property name="min_distance" value="5"/>
+				<property name="max_distance" value="25"/>
+				<property name="color" value="255,180,0,255"/>
+				<property name="has_pulse" value="true"/>
+				<property name="text_type" value="Distance"/>
+				<property name="show_offscreen" value="true"/>
+				<property name="offset" value="0,0.5,0"/>
+			</onscreen_settings>
+		</nav_object_class>
+	</append>
+</configs>

@@ -1,0 +1,64 @@
+<configs patcher-version="4">
+	<append xpath="/entity_classes">
+		<!-- CONTAINER AND CRATE ENTITIES -->
+		<entity_class name="AirSupplyCrateT1">
+			<property name="Class" value="EntityAirDrop, QuestCore"/>
+			<property name="Parent" value="SupplyCrates"/>
+			<property name="Prefab" value="SupplyCrate"/>
+			<property name="Mesh" value="SupplyCrate/SupplyCrateEntityPrefab"/>
+			<property name="ModelType" value="SupplyCrate"/>
+			<property name="Weight" value="100"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="SurfaceCategory" value="wood"/>
+			<property name="ParticleOnDeath" value="supply_crate_gib_Prefab"/>
+			<property name="LootListAlive" value="airDropQuestT1"/>
+			<property name="Immunity" value="bleeding;sickness;disease;wellness"/>
+
+			<property name="Faction" value="animals"/>
+			<property name="Tags" value="entity,player"/>
+			<property name="IsEnemyEntity" value="false"/>
+
+			<property name="SoundParachuteOpen" value="SupplyDrops/Parachute_Opens"/>
+			<property name="SoundLanding" value="SupplyDrops/Supply_Crate_Land"/>
+			<property name="TimeStayAfterDeath" value="0"/>
+
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="500"/>
+			</effect_group>
+
+			<property name="NavObject" value="fetch_container"/>
+			<!-- If set this entity shows on the map -->
+			<!--<property name="MapIcon" value="map_supply_crate"/> -->
+		</entity_class>
+
+		<entity_class name="AirSupplyCrateT2" extends="AirSupplyCrateT1">
+			<property name="LootListAlive" value="airDropQuestT2"/>
+		</entity_class>
+
+		<entity_class name="AirSupplyPlane">
+			<property name="HideInSpawnMenu" value="true"/>
+			<property name="Tags" value="vehicle"/>
+			<property name="Class" value="EntitySupplyPlane"/>
+			<property name="Mesh" value="SupplyPlane/prefabC46"/>
+			<property name="ModelType" value="Standard"/>
+			<property name="HasRagdoll" value="false"/>
+			<property name="Prefab" value="SupplyPlane"/>
+			<property name="Parent" value="SupplyCrates"/>
+			<property name="Faction" value="none"/>
+			<property name="Weight" value="100"/>
+			<property name="SurfaceCategory" value="wood"/>
+			<property name="NavObject" value="supply_plane"/>
+			<property name="ParticleOnDeath" value="supply_crate_gib_Prefab"/>
+			<effect_group name="Base Effects">
+				<passive_effect name="HealthMax" operation="base_set" value="200"/>
+			</effect_group>
+			<property name="TimeStayAfterDeath" value="0"/>
+		</entity_class>
+	</append>
+
+	<!-- With A21 this is done with pure harmony patching (hardcoded), anything attacking the player will also attack the supply crate -->
+	<!-- <append xpath="/entity_classes/entity_class[starts-with(@name, 'zombie')]/property[@value='ApproachAndAttackTarget']/@data">,EntityAirDrop:QuestCore,90</append> -->
+	<!-- <append xpath="/entity_classes/entity_class[@name='animalTemplateHostile']/property[@value='ApproachAndAttackTarget']/@data">,EntityAirDrop:QuestCore,90</append> -->
+	<!-- <append xpath="/entity_classes/entity_class[@name='zombieTemplateMale']/property[@value='SetNearestEntityAsTarget']/@data">,EntityAirDrop:QuestCore,80,80</append> -->
+	<!-- <append xpath="/entity_classes/entity_class[@name='animalTemplateHostile']/property[@value='SetNearestEntityAsTarget']/@data">,EntityAirDrop:QuestCore,80,80</append> -->
+</configs>

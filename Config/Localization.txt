@@ -1,0 +1,18 @@
+Key,english
+quest_air_supply,Protect Air Supply
+quest_air_supply_offer,"We expect some Air Supplies from our White River friends from outside. But the undead keep taking an interest in the supplies themselves; most of the time before any of our White River Scouts can reach them. Would you mind helping us by retrieving the supplies?"
+quest_air_supply_title,Protect Air Supply
+quest_air_supply_desc,"Get to the Air Drop site and protect the supply crate at any cost. Report back to the White River trader."
+quest_air_supply_statement,Protect the Air Supply and return back here.
+quest_air_supply_response,Air Supply ([DECEA3]{start.distance} {start.direction}[-])
+quest_air_supply_completion,"Thanks for protecting the shipment. You may keep the content!"
+quest_air_supply_t1,Protect Air Supply T1
+quest_air_supply_t2,Protect Air Supply T2
+quest_air_supply_t3,Protect Air Supply T3
+quest_air_supply_t4,Protect Air Supply T4
+quest_air_supply_t5,Protect Air Supply T5
+AirSupplyCrateT1,Air Supply T1
+AirSupplyCrateT2,Air Supply T2
+AirSupplyCrateT3,Air Supply T3
+AirSupplyCrateT4,Air Supply T4
+AirSupplyCrateT5,Air Supply T5

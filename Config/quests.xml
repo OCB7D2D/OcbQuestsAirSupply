@@ -1,0 +1,11 @@
+<configs patcher-version="4">
+	<!-- Include quests for all tiers -->
+	<include path="quests.air-supply.t1.xml"/>
+	<include path="quests.air-supply.t2.xml"/>
+
+	<!-- to test all quests at the trader directly -->
+	<!-- <setattribute xpath="/quests/quest[starts-with(@id, 'ocb_air_supply_t')]/property[@name='difficulty_tier']" name="value">1</setattribute> -->
+
+	<!-- uncomment to progress faster when testing all tiers -->
+	<!-- <setattribute xpath="/quests" name="quests_per_tier">2</setattribute> -->
+</configs>

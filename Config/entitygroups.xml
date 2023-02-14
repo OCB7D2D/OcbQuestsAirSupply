@@ -1,0 +1,8 @@
+<configs patcher-version="4">
+	<append xpath="/entitygroups">
+		<entitygroup name="AirSupplyCrates">
+			<entity name="AirSupplyCrateT1"/>
+			<entity name="AirSupplyCrateT2"/>
+		</entitygroup>
+	</append>
+</configs>

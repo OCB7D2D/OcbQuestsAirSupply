@@ -1,0 +1,159 @@
+<configs>
+	<insertBefore xpath="/quests/quest_list[@id='trader_quests']">
+		<quest id="ocb_air_supply_t1_turnin">
+			<property name="name_key" value="quest_air_supply_t1"/>
+			<property name="offer_key" value="quest_air_supply_offer"/>
+			<property name="subtitle_key" value="quest_air_supply_title"/>
+			<property name="description_key" value="quest_air_supply_desc"/>
+			<property name="statement_key" value="quest_air_supply_statement"/>
+			<property name="response_key" value="quest_air_supply_response"/>
+			<property name="completion_key" value="quest_air_supply_completion"/>
+
+			<property name="repeatable" value="true"/>
+			<property name="difficulty" value="veryeasy"/>
+			<property name="difficulty_tier" value="1"/>
+			<property name="shareable" value="false"/>
+			<property name="category_key" value="challenge"/>
+			<property name="icon" value="ui_game_symbol_map"/>
+			<property name="completiontype" value="TurnIn"/>
+
+			<!-- PHASE 1 - REACH POSITION -->
+
+			<objective type="RandomPlace, QuestCore">
+				<property name="completion_distance" value="20"/>
+				<property name="anchor" value="QuestGiver"/>
+				<property name="target" value="FlatArea"/>
+				<property name="min_distance" value="250"/>
+				<property name="max_distance" value="330"/>
+				<property name="nav_object" value="quest"/>
+				<property name="phase" value="1"/>
+			</objective>
+
+			<!-- PHASE 2 - WAIT FOR AIR-DROP AND STAY CLOSE -->
+
+			<objective type="AirDrop, QuestCore">
+				<property name="nav_object" value="quest"/>
+				<property name="plane_nav_object" value="supply_plane"/>
+				<property name="crate_nav_object" value="supply_crate"/>
+				<property name="target" value="Reuse"/>
+				<property name="crate_class" value="AirSupplyCrateT1"/>
+				<property name="start_at_pos" value="true"/>
+				<property name="completion_distance" value="25"/>
+				<property name="lock_at_start" value="true"/>
+				<property name="unlock_at_end" value="false"/>
+				<property name="wait_ground" value="true"/>
+				<property name="phase" value="2"/>
+			</objective>
+
+			<!-- stay close to position or quest fails -->
+			<objective type="StayClose, QuestCore">
+				<property name="visible" value="false"/>
+				<property name="radius" value="25"/>
+				<property name="phase" value="2"/>
+				<property name="warn_sfx" value="ocb-warning-02"/>
+			</objective>
+
+			<!-- PHASE 3 - FIRST HORDE -->
+
+			<!-- launch the first zombie wave -->
+			<objective type="KillEnemies, QuestCore">
+				<property name="id" value="ZombieGhostTownHorde,ZombieNightClubHorde,HospitalHorde,ZombieGhostTownHorde,ZombieNightClubHorde"/>
+
+				<!-- number of required kills -->
+				<property name="value" value="7"/>
+				<!-- maximum number of concurrent enemies -->
+				<property name="max_entity_count" value="3"/>
+				<!-- add more entites than needed to kill -->
+				<property name="spawn_excess_count" value="0"/>
+
+				<!-- range of distance to spawn away from player -->
+				<property name="min_player_distance" value="22"/>
+				<property name="max_player_distance" value="28"/>
+				<property name="entity_height_offset" value="0"/>
+
+				<!-- global timer to wait for next spawn (range) -->
+				<property name="min_spawn_wait" value="0.8"/>
+				<property name="max_spawn_wait" value="4.2"/>
+
+				<!-- global chance entity has a target on spawn -->
+				<property name="target_chance" value="1"/>
+				<!-- either target player or target entity (AirDrop) -->
+				<property name="player_target_chance" value="0.35"/>
+				<!-- Target enemy for that many seconds on-spawn -->
+				<property name="min_target_time" value="45"/>
+				<property name="max_target_time" value="75"/>
+				<!-- timer to check for another target. Will only check one random entity. -->
+				<!-- If the random entity still has a valid target, the whole step is skipped -->
+				<!-- Note that the re_target_chance will be applied after all these checks -->
+				<property name="re_target_min_delay" value="0.6"/>
+				<property name="re_target_max_delay" value="1.4"/>
+				<property name="re_target_chance" value="0.65"/>
+				<property name="player_re_target_chance" value="0.65"/>
+				<!-- Target enemy for that many seconds on-spawn -->
+				<property name="min_re_target_time" value="30"/>
+				<property name="max_re_target_time" value="60"/>
+
+				<!-- global chance entity will rage on spawn -->
+				<property name="rage_chance" value="0.7"/>
+				<!-- Rage speed modifier range on spawn -->
+				<property name="min_rage_speed" value="1.125"/>
+				<property name="max_rage_speed" value="1.375"/>
+				<!-- Rage time modifier range on spawn -->
+				<property name="min_rage_time" value="15.0"/>
+				<property name="max_rage_time" value="35.0"/>
+				<!-- timer to check for another entity to enrage. Will only check one random entity. -->
+				<!-- If the random entity still is raging, the whole step is skipped -->
+				<!-- Note that the re_rage_chance will be applied after all these checks -->
+				<property name="re_rage_min_delay" value="2.15"/>
+				<property name="re_rage_max_delay" value="3.75"/>
+				<property name="re_rage_chance" value="0.375"/>
+				<!-- Rage speed modifier range on re-rage -->
+				<property name="min_re_rage_speed" value="1.25"/>
+				<property name="max_re_rage_speed" value="1.5"/>
+				<!-- Rage time modifier range on re-rage -->
+				<property name="min_re_rage_time" value="10.0"/>
+				<property name="max_re_rage_time" value="25.0"/>
+
+				<property name="phase" value="3"/>
+			</objective>
+
+			<objective type="StayClose, QuestCore">
+				<property name="radius" value="40"/>
+				<property name="phase" value="3"/>
+				<property name="warn_sfx" value="ocb-warning-02"/>
+			</objective>
+
+			<objective type="AirDropIsAlive, QuestCore">
+				<property name="phase" value="3"/>
+			</objective>
+
+			<!-- finally unlock the air drop loot container -->
+			<action type="AirDropUnlock, QuestCore" phase="4"/>
+
+			<!-- PHASE 4 -->
+
+			<objective type="ReturnToNPC">
+				<property name="nav_object" value="return_to_trader"/>
+				<property name="phase" value="4"/>
+			</objective>
+
+			<objective type="InteractWithNPC">
+				<property name="nav_object" value="return_to_trader"/>
+				<property name="phase" value="4"/>
+			</objective>
+
+			<reward type="Exp" value="1500"/>
+			<reward type="Item" id="casinoCoin" value="360"/>
+
+			<reward type="LootItem" id="groupQuestMedical" ischosen="true" isfixed="true" value="2"/>
+			<reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestMods" ischosen="true" value="2"/>
+			<reward type="LootItem" id="groupQuestAmmo,groupQuestMedical,groupQuestSchematics,groupQuestMods" ischosen="true" value="1"/>
+		</quest>
+	</insertBefore>
+
+	<append xpath="/quests/quest_list[@id='trader_quests']">
+		<quest id="ocb_air_supply_t1_turnin"/>
+	</append>
+</configs>

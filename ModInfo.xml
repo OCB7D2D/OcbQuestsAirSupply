@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xml>
+	<Name value="OcbQuestsAirSupply" />
+	<DisplayName value="OCB Quest Core addon to Protect Air Supply Drops" />
+	<Description value="Air-Supply related quests (requires OcbQuestCore)." />
+	<Website value="https://github.com/OCB7D2D/OcbQuestsAirSupply" />
+	<Author value="ocbMaurice" />
+	<Version value="0.2.0" />
+</xml>	

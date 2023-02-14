@@ -1,0 +1,58 @@
+<configs patcher-version="4">
+	<append xpath="/lootcontainers">
+		<!-- loot in air drops for AirSupply quests -->
+		<lootgroup name="groupAirDropQuestT1">
+			<item group="groupScrapCommon" loot_prob_template="high"/>
+			<item group="groupScrapUncommon" loot_prob_template="med"/>
+			<item group="groupIngredientsCommon" loot_prob_template="high"/>
+			<item group="groupIngredientsUncommon" loot_prob_template="med"/>
+			<item group="groupDrinksCommon" loot_prob_template="high"/>
+			<item group="groupDrinksUncommon" loot_prob_template="med"/>
+			<item group="groupFoodCommon" loot_prob_template="low"/>
+			<item group="groupFoodUncommon" loot_prob_template="veryLow"/>
+			<item group="groupMedicalCommon" loot_prob_template="med"/>
+			<item group="groupMedicalUncommon" loot_prob_template="low"/>
+			<item name="medicalSkillMagazine" loot_prob_template="low"/>
+		</lootgroup>
+		<lootgroup name="groupAirDropQuestT2">
+			<item group="groupScrapCommon" loot_prob_template="med"/>
+			<item group="groupScrapUncommon" loot_prob_template="high"/>
+			<item group="groupIngredientsCommon" loot_prob_template="med"/>
+			<item group="groupIngredientsUncommon" loot_prob_template="high"/>
+			<item group="groupDrinksCommon" loot_prob_template="high"/>
+			<item group="groupDrinksUncommon" loot_prob_template="medHigh"/>
+			<item group="groupFoodCommon" loot_prob_template="med"/>
+			<item group="groupFoodUncommon" loot_prob_template="low"/>
+			<item group="groupMedicalCommon" loot_prob_template="high"/>
+			<item group="groupMedicalUncommon" loot_prob_template="med"/>
+			<item group="booksAllScaled" loot_prob_template="veryLow"/>
+			<item name="seedSkillMagazine" loot_prob_template="low"/>
+		</lootgroup>
+
+		<lootcontainer
+			name="airDropQuestT1"
+			count="2,6"
+			size="8,4"
+			destroy_on_close="true"
+			sound_open="SupplyDrops/open_supply_crate"
+			sound_close="SupplyDrops/close_supply_crate"
+			loot_quality_template="qualBaseTemplate"
+			open_time="0"
+		>
+			<item group="groupAirDropQuestT1"/>
+		</lootcontainer>
+
+		<lootcontainer
+			name="airDropQuestT2"
+			count="3,6"
+			size="8,4"
+			destroy_on_close="true"
+			sound_open="SupplyDrops/open_supply_crate"
+			sound_close="SupplyDrops/close_supply_crate"
+			loot_quality_template="qualBaseTemplate"
+			open_time="0"
+		>
+			<item group="groupAirDropQuestT2"/>
+		</lootcontainer>
+	</append>
+</configs>
