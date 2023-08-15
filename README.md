@@ -8,6 +8,10 @@ Feel free to create (comprehensive) PRs to improve horde spawn or loot.
 
 ## Changelog
 
+### Version 0.2.1
+
+- Increased reward count to 3
+
 ### Version 0.2.0
 
 - Initial working version

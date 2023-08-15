@@ -15,6 +15,7 @@
 			<property name="shareable" value="false"/>
 			<property name="category_key" value="challenge"/>
 			<property name="icon" value="ui_game_symbol_map"/>
+			<property name="reward_choices_count" value="3"/>
 			<property name="completiontype" value="TurnIn"/>
 
 			<!-- PHASE 1 - REACH POSITION -->
