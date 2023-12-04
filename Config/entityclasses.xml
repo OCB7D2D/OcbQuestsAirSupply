@@ -35,6 +35,16 @@
 			<property name="LootListAlive" value="airDropQuestT2"/>
 		</entity_class>
 
+		<entity_class name="AirSupplyCrateT3" extends="AirSupplyCrateT1">
+			<property name="LootListAlive" value="airDropQuestT2"/>
+		</entity_class>
+		<entity_class name="AirSupplyCrateT4" extends="AirSupplyCrateT1">
+			<property name="LootListAlive" value="airDropQuestT2"/>
+		</entity_class>
+		<entity_class name="AirSupplyCrateT5" extends="AirSupplyCrateT1">
+			<property name="LootListAlive" value="airDropQuestT2"/>
+		</entity_class>
+
 		<entity_class name="AirSupplyPlane">
 			<property name="HideInSpawnMenu" value="true"/>
 			<property name="Tags" value="vehicle"/>

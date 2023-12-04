@@ -2,6 +2,9 @@
 	<!-- Include quests for all tiers -->
 	<include path="quests.air-supply.t1.xml"/>
 	<include path="quests.air-supply.t2.xml"/>
+	<include path="quests.air-supply.t3.xml"/>
+	<include path="quests.air-supply.t4.xml"/>
+	<include path="quests.air-supply.t5.xml"/>
 
 	<!-- to test all quests at the trader directly -->
 	<!-- <setattribute xpath="/quests/quest[starts-with(@id, 'ocb_air_supply_t')]/property[@name='difficulty_tier']" name="value">1</setattribute> -->

@@ -3,6 +3,9 @@
 		<entitygroup name="AirSupplyCrates">
 			<entity name="AirSupplyCrateT1"/>
 			<entity name="AirSupplyCrateT2"/>
+			<entity name="AirSupplyCrateT3"/>
+			<entity name="AirSupplyCrateT4"/>
+			<entity name="AirSupplyCrateT5"/>
 		</entitygroup>
 	</append>
 </configs>

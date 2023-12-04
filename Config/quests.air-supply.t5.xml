@@ -1,0 +1,389 @@
+<configs patcher-version="4">
+
+  <insertBefore xpath="/quests/quest_list[@id='trader_quests']">
+
+    <quest id="ocb_air_supply_t5_turnin">
+
+      <property name="name_key" value="quest_air_supply_t5"/>
+      <property name="offer_key" value="quest_air_supply_offer"/>
+      <property name="subtitle_key" value="quest_air_supply_title"/>
+      <property name="description_key" value="quest_air_supply_desc"/>
+      <property name="statement_key" value="quest_air_supply_statement"/>
+      <property name="response_key" value="quest_air_supply_response"/>
+      <property name="completion_key" value="quest_air_supply_completion"/>
+
+      <property name="repeatable" value="true"/>
+      <property name="difficulty" value="hard"/>
+      <property name="difficulty_tier" value="1"/>
+      <property name="shareable" value="false"/>
+      <property name="category_key" value="challenge"/>
+      <property name="icon" value="ui_game_symbol_map"/>
+			<property name="reward_choices_count" value="3"/>
+      <property name="completiontype" value="TurnIn"/>
+
+      <!-- PHASE 1 - REACH AT NIGHT -->
+
+      <objective type="RandomPlace, QuestCore">
+        <property name="completion_distance" value="20"/>
+        <property name="anchor" value="QuestGiver" />
+        <property name="target" value="FlatArea" />
+        <property name="min_distance" value="400" />
+        <property name="max_distance" value="520" />
+        <property name="nav_object" value="quest" />
+        <property name="phase" value="1"/>
+      </objective>
+
+      <!-- PHASE 2 - ACTIVATE RALLY POINT -->
+
+      <objective type="RallyPoint">
+        <property name="start_mode" value="Create"/>
+        <property name="allowed_start_hour" value="22" />
+        <property name="allowed_end_hour" value="1" />
+        <property name="nav_object" value="rally" />
+        <property name="phase" value="2"/>
+      </objective>
+
+      <!-- PHASE 3 - WAIT FOR AIRDROP -->
+
+      <objective type="AirDrop, QuestCore">
+        <property name="nav_object" value="quest" />
+        <property name="target" value="Reuse" />
+        <property name="crate_class" value="AirSupplyCrateT3" />
+        <property name="start_at_pos" value="true" />
+        <property name="completion_distance" value="25" />
+        <property name="unlock_at_end" value="false" />
+        <property name="wait_ground" value="false" />
+        <property name="min_height" value="95" />
+        <property name="phase" value="3"/>
+      </objective>
+
+      <!-- need to stay in proximity -->
+      <objective type="StayClose, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="radius" value="25"/>
+        <property name="phase" value="3"/>
+        <property name="warn_sfx" value="ocb-warning-02"/>
+      </objective>
+
+      <!-- PHASE 4 - BIRDS -->
+
+      <!-- launch the first zombie wave -->
+      <objective type="KillEnemies, QuestCore">
+
+        <property name="id" value="animalZombieVulture"/>
+
+        <!-- number of required kills -->
+        <property name="value" value="7"/>
+        <!-- maximum number of concurrent enemies -->
+        <property name="max_entity_count" value="3" />
+        <!-- add more entites than needed to kill -->
+        <property name="spawn_excess_count" value="0" />
+
+        <!-- range of distance to spawn away from player -->
+        <property name="min_player_distance" value="32" />
+        <property name="max_player_distance" value="36" />
+        <property name="entity_height_offset" value="-25" />
+
+        <!-- global timer to wait for next spawn (range) -->
+        <property name="min_spawn_wait" value="1.25" />
+        <property name="max_spawn_wait" value="2.75" />
+
+        <!-- global chance entity has a target on spawn -->
+        <property name="target_chance" value="1.0" />
+        <!-- either target player or the target entity (e.g. crate) -->
+        <property name="player_target_chance" value="0.225" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_target_time" value="75" />
+        <property name="max_target_time" value="120" />
+        <!-- timer to check for another target. Will only check one random entity. -->
+        <!-- If the random entity still has a valid target, the whole step is skipped -->
+        <!-- Note that the re_target_chance will be applied after all these checks -->
+        <property name="re_target_min_delay" value="1.35" />
+        <property name="re_target_max_delay" value="2.35" />
+        <property name="re_target_chance" value="0.45" />
+        <property name="player_re_target_chance" value="0.425" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_re_target_time" value="30" />
+        <property name="max_re_target_time" value="45" />
+
+        <!-- global chance entity will rage on spawn -->
+        <property name="rage_chance" value="0.75" />
+        <!-- Rage speed modifier range on spawn -->
+        <property name="min_rage_speed" value="1.5" />
+        <property name="max_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on spawn -->
+        <property name="min_rage_time" value="15.0" />
+        <property name="max_rage_time" value="25.0" />
+        <!-- timer to check for another entity to enrage. Will only check one random entity. -->
+        <!-- If the random entity still is raging, the whole step is skipped -->
+        <!-- Note that the re_rage_chance will be applied after all these checks -->
+        <property name="re_rage_min_delay" value="3.15" />
+        <property name="re_rage_max_delay" value="5.75" />
+        <property name="re_rage_chance" value="0.5" />
+        <!-- Rage speed modifier range on re-rage -->
+        <property name="min_re_rage_speed" value="1.25" />
+        <property name="max_re_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on re-rage -->
+        <property name="min_re_rage_time" value="10.0" />
+        <property name="max_re_rage_time" value="15.0" />
+
+        <property name="phase" value="4"/>
+      </objective>
+
+      <!-- need to stay in proximity -->
+      <objective type="StayClose, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="radius" value="35"/>
+        <property name="phase" value="4"/>
+        <property name="warn_sfx" value="ocb-warning-02"/>
+      </objective>
+
+      <!-- make sure crate is still alive -->
+      <objective type="AirDropIsAlive, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="phase" value="4"/>
+      </objective>
+
+      <!-- PHASE 5 - PREPARE -->
+
+      <!-- wait until the crate is on the ground -->
+      <objective type="AirDropWait, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="phase" value="5"/>
+      </objective>
+
+      <!-- still keep proximity -->
+      <objective type="StayClose, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="radius" value="35"/>
+        <property name="phase" value="5"/>
+        <property name="warn_sfx" value="ocb-warning-02"/>
+      </objective>
+
+      <!-- Give some time for the next wave -->
+      <objective type="CountDown, QuestCore">
+        <property name="label" value="PrepareForBattle"/>
+        <property name="time" value="15"/>
+        <property name="phase" value="5"/>
+      </objective>
+
+      <!-- PHASE 6 - HORDE -->
+
+      <!-- launch the second zombie wave -->
+      <objective type="KillEnemies, QuestCore">
+
+        <property name="id" value="ZombieGhostTownHorde,ZombieBikerBarHorde,ZombieNightClubHorde,HospitalHorde,LabWorkerHorde,ZombieGhostTownHorde,ZombieSoldierHorde"/>
+
+        <!-- number of required kills -->
+        <property name="value" value="11"/>
+        <!-- maximum number of concurrent enemies -->
+        <property name="max_entity_count" value="4" />
+        <!-- add more entites than needed to kill -->
+        <property name="spawn_excess_count" value="0" />
+
+        <!-- range of distance to spawn away from player -->
+        <property name="min_player_distance" value="24" />
+        <property name="max_player_distance" value="32" />
+        <property name="entity_height_offset" value="0" />
+
+        <!-- global timer to wait for next spawn (range) -->
+        <property name="min_spawn_wait" value="1.5" />
+        <property name="max_spawn_wait" value="3.75" />
+
+        <!-- global chance entity has a target on spawn -->
+        <property name="target_chance" value="0.95" />
+        <!-- either target player or the target entity (e.g. crate) -->
+        <property name="player_target_chance" value="0.325" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_target_time" value="60" />
+        <property name="max_target_time" value="90" />
+        <!-- timer to check for another target. Will only check one random entity. -->
+        <!-- If the random entity still has a valid target, the whole step is skipped -->
+        <!-- Note that the re_target_chance will be applied after all these checks -->
+        <property name="re_target_min_delay" value="1.35" />
+        <property name="re_target_max_delay" value="2.35" />
+        <property name="re_target_chance" value="0.45" />
+        <property name="player_re_target_chance" value="0.425" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_re_target_time" value="30" />
+        <property name="max_re_target_time" value="45" />
+
+        <!-- global chance entity will rage on spawn -->
+        <property name="rage_chance" value="0.65" />
+        <!-- Rage speed modifier range on spawn -->
+        <property name="min_rage_speed" value="1.25" />
+        <property name="max_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on spawn -->
+        <property name="min_rage_time" value="15.0" />
+        <property name="max_rage_time" value="25.0" />
+        <!-- timer to check for another entity to enrage. Will only check one random entity. -->
+        <!-- If the random entity still is raging, the whole step is skipped -->
+        <!-- Note that the re_rage_chance will be applied after all these checks -->
+        <property name="re_rage_min_delay" value="3.15" />
+        <property name="re_rage_max_delay" value="5.75" />
+        <property name="re_rage_chance" value="0.35" />
+        <!-- Rage speed modifier range on re-rage -->
+        <property name="min_re_rage_speed" value="1.25" />
+        <property name="max_re_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on re-rage -->
+        <property name="min_re_rage_time" value="10.0" />
+        <property name="max_re_rage_time" value="15.0" />
+
+        <property name="phase" value="6"/>
+      </objective>
+
+      <!-- still need to stay in proximity -->
+      <objective type="StayClose, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="radius" value="35"/>
+        <property name="phase" value="6"/>
+        <property name="warn_sfx" value="ocb-warning-02"/>
+      </objective>
+
+      <!-- must ensure that the crate is alive -->
+      <objective type="AirDropIsAlive, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="phase" value="6"/>
+      </objective>
+
+      <!-- unlock the current air drop loot container -->
+      <action type="AirDropUnlock, QuestCore" phase="7" />
+
+      <!-- PHASE 7 - REACH NEXT DROP IN TIME -->
+
+      <!-- spawn new air drop at location close by -->
+      <objective type="AirDrop, QuestCore">
+        <property name="nav_object" value="quest" />
+        <property name="crate_class" value="AirSupplyCrateT5" />
+        <property name="start_at_pos" value="false" />
+        <property name="lock_at_start" value="true" />
+        <property name="unlock_at_end" value="false" />
+        <property name="wait_ground" value="true" />
+        <property name="anchor" value="QuestPosition" />
+        <property name="target" value="FlatArea" />
+        <property name="min_distance" value="480" />
+        <property name="max_distance" value="750" />
+        <property name="phase" value="7"/>
+      </objective>
+
+      <!-- reach air drop within time or quest fails -->
+      <objective type="CountDown, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="fail_when_zero" value="true"/>
+        <property name="value" value="2150"/>
+        <property name="phase" value="7"/>
+      </objective>
+
+      <!-- PHASE 8 - HORDE -->
+
+      <!-- launch the third zombie wave -->
+      <objective type="KillEnemies, QuestCore">
+
+        <property name="id" value="ZombieGhostTownHorde,ZombieBikerBarHorde,ZombieNightClubHorde,HospitalHorde,LabWorkerHorde,ZombieGhostTownHorde,ZombieSoldierHorde,ZombieSpecialInfectedHorde"/>
+
+        <!-- number of required kills -->
+        <property name="value" value="15"/>
+        <!-- maximum number of concurrent enemies -->
+        <property name="max_entity_count" value="4" />
+        <!-- add more entites than needed to kill -->
+        <property name="spawn_excess_count" value="0" />
+
+        <!-- range of distance to spawn away from player -->
+        <property name="min_player_distance" value="24" />
+        <property name="max_player_distance" value="32" />
+        <property name="entity_height_offset" value="0" />
+
+        <!-- global timer to wait for next spawn (range) -->
+        <property name="min_spawn_wait" value="1.5" />
+        <property name="max_spawn_wait" value="3.75" />
+
+        <!-- global chance entity has a target on spawn -->
+        <property name="target_chance" value="0.95" />
+        <!-- either target player or the target entity (e.g. crate) -->
+        <property name="player_target_chance" value="0.625" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_target_time" value="60" />
+        <property name="max_target_time" value="90" />
+        <!-- timer to check for another target. Will only check one random entity. -->
+        <!-- If the random entity still has a valid target, the whole step is skipped -->
+        <!-- Note that the re_target_chance will be applied after all these checks -->
+        <property name="re_target_min_delay" value="1.35" />
+        <property name="re_target_max_delay" value="2.35" />
+        <property name="re_target_chance" value="0.65" />
+        <property name="player_re_target_chance" value="0.425" />
+        <!-- Target enemy for that many seconds on-spawn -->
+        <property name="min_re_target_time" value="30" />
+        <property name="max_re_target_time" value="45" />
+
+        <!-- global chance entity will rage on spawn -->
+        <property name="rage_chance" value="0.75" />
+        <!-- Rage speed modifier range on spawn -->
+        <property name="min_rage_speed" value="1.25" />
+        <property name="max_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on spawn -->
+        <property name="min_rage_time" value="15.0" />
+        <property name="max_rage_time" value="25.0" />
+        <!-- timer to check for another entity to enrage. Will only check one random entity. -->
+        <!-- If the random entity still is raging, the whole step is skipped -->
+        <!-- Note that the re_rage_chance will be applied after all these checks -->
+        <property name="re_rage_min_delay" value="3.15" />
+        <property name="re_rage_max_delay" value="5.75" />
+        <property name="re_rage_chance" value="0.5" />
+        <!-- Rage speed modifier range on re-rage -->
+        <property name="min_re_rage_speed" value="1.25" />
+        <property name="max_re_rage_speed" value="1.75" />
+        <!-- Rage time modifier range on re-rage -->
+        <property name="min_re_rage_time" value="10.0" />
+        <property name="max_re_rage_time" value="15.0" />
+
+        <property name="phase" value="8"/>
+      </objective>
+
+      <!-- still need to stay in proximity -->
+      <objective type="StayClose, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="radius" value="25"/>
+        <property name="phase" value="8"/>
+        <property name="warn_sfx" value="ocb-warning-02"/>
+      </objective>
+
+      <!-- must ensure that the crate is alive -->
+      <objective type="AirDropIsAlive, QuestCore">
+        <property name="visible" value="false"/>
+        <property name="phase" value="8"/>
+      </objective>
+
+      <!-- PHASE 9 - TURNIN -->
+
+      <!-- finally unlock the air drop loot container -->
+      <action type="AirDropUnlock, QuestCore" phase="9" />
+
+      <objective type="ReturnToNPC">
+        <property name="nav_object" value="return_to_trader" />
+        <property name="phase" value="9"/>
+      </objective>
+
+      <objective type="InteractWithNPC">
+        <property name="nav_object" value="return_to_trader" />
+        <property name="phase" value="9"/>
+      </objective>
+
+      <reward type="Exp" value="9000"/>
+      <reward type="Item" id="casinoCoin" value="1500"/>
+
+      <reward type="LootItem" id="groupQuestWeapons" ischosen="true" isfixed="true" value="5"/>
+      <reward type="LootItem" id="groupQuestArmor,groupQuestMedical" ischosen="true" isfixed="true" value="5"/>
+      <reward type="LootItem" id="groupQuestAmmo" ischosen="true" value="5"/>
+      <reward type="LootItem" id="groupQuestTools" ischosen="true" value="5"/>
+      <reward type="LootItem" id="groupQuestSchematics" ischosen="true" value="5"/>
+      <reward type="LootItem" id="groupQuestMods" ischosen="true" value="5"/>
+
+    </quest>
+
+  </insertBefore>
+
+  <append xpath="/quests/quest_list[@id='trader_quests']">
+    <quest id="ocb_air_supply_t5_turnin"/>
+  </append>
+
+</configs>
